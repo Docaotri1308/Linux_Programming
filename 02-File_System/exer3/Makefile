@@ -4,4 +4,4 @@ all:
 	gcc -o test main.c
 
 clean:
-	rm -rf test test.txt
+	rm -rf test
