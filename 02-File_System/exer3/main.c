@@ -8,9 +8,8 @@
 
 int main()
 {
-    int fd;
+    int fd, wr;
     char buff[18] = "Hello Mr.Phong !\n";
-    int rd, wr;
 
     struct stat infor;
 
