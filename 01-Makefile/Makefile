@@ -1,4 +1,4 @@
-.PHONY: all_static all_shared clean
+.PHONY: all 
 
 LIB_NAME	:= tris
 
