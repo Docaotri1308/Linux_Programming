@@ -1,4 +1,4 @@
-.PHONY: all 
+.PHONY: all clean
 
 LIB_NAME	:= tris
 
