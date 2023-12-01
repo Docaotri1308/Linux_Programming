@@ -14,14 +14,12 @@ int main()
     struct stat infor;
 
     fd = open("test.txt", O_RDWR | O_CREAT, 0777);
-    if (fd == -1)
-    {
+    if (fd == -1) {
         printf("open() file test.txt failed\n");
     }
 
     wr = write(fd, buff, strlen(buff));
-    if (wr == -1)
-    {
+    if (wr == -1) {
         printf("write() file test.txt failed\n");
     }
 
