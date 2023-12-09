@@ -26,7 +26,7 @@ int main()
 {
     clock_t start_time = clock();
 
-    pthread_t tid;
+    pthread_t thread_id;
     int ret;
 
     fd = open("Text_multi_thread.txt", O_RDWR | O_APPEND | O_CREAT, 0777);
@@ -34,12 +34,12 @@ int main()
         printf("open() file Text_multi_thread.txt failed\n");
     }
 
-    if (ret = pthread_create(&tid, NULL, &thr_handle, NULL)) {
+    if (ret = pthread_create(&thread_id, NULL, &thr_handle, NULL)) {
         printf("pthread_create() error number = %d\n", ret);
         return -1;
     }
 
-    pthread_join(tid, NULL);
+    pthread_join(thread_id, NULL);
     
     clock_t end_time = clock();
     printf("Time used in single_thread: %f\n", (double)(end_time - start_time)/CLOCKS_PER_SEC);
