@@ -10,8 +10,7 @@ int fd;
 char buff[18] = "Hello Mr.Phong !\n";
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
-static void *thr_handle(void *argv)
-{
+static void *thr_handle(void *argv) {
     pthread_mutex_lock(&mutex);
 
     for (int i = 0; i < 1000; i++) {
@@ -47,5 +46,4 @@ int main()
     close(fd);
     
     return 0;
-
 }

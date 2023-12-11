@@ -4,7 +4,7 @@
 #include <string.h>
 #include <unistd.h>
 
-pthread_t thread_id1, thread_id2; 
+pthread_t thread_id1, thread_id2;
 
 typedef struct {
     char Name[20];
@@ -13,9 +13,8 @@ typedef struct {
     char Home[20];
 } Human;
 
-static void *threadHandler(void *args)
-{
-    pthread_t tid = pthread_self(); 
+static void *threadHandler(void *args) {
+    pthread_t tid = pthread_self();
     Human *info = (Human*)args;
     if (pthread_equal(tid, thread_id1)) {
         printf("This is thread 1, ---> tid1: %ld\n", tid);
