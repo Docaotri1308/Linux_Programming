@@ -32,10 +32,15 @@ static void *threadHandle_1(void *args) {
 
         printf("Name: ");
         fgets(info->Name, sizeof(info->Name), stdin);
+        info->Name[strcspn(info->Name, "\n")] = '\0';
+
         printf("Phone: ");
         fgets(info->PhoneNum, sizeof(info->PhoneNum), stdin);
+        info->PhoneNum[strcspn(info->PhoneNum, "\n")] = '\0';
+
         printf("Home: ");
         fgets(info->Home, sizeof(info->Home), stdin);
+        info->Home[strcspn(info->Home, "\n")] = '\0';
 
         cond_var = 2;
         
@@ -59,7 +64,7 @@ static void *threadHandle_2(void *args) {
 
         printf("This is thread 2, ---> tid2: %ld\n", tid);
 
-        sprintf(buff, "%s %s %s", info->Name, info->PhoneNum, info->Home);
+        sprintf(buff, "Name - Phone - Home: %s - %s - %s \n", info->Name, info->PhoneNum, info->Home);
         write(fd, buff, strlen(buff));
 
         cond_var = 3;
@@ -84,7 +89,7 @@ static void *threadHandle_3(void *args) {
 
         printf("This is thread 3, ---> tid3: %ld\n", tid);
 
-        sprintf(buff, "%s %s %s", info->Name, info->PhoneNum, info->Home);
+        sprintf(buff, "Name - Phone - Home: %s - %s - %s \n", info->Name, info->PhoneNum, info->Home);
         printf("%s", buff);
 
         cond_var = 1;
