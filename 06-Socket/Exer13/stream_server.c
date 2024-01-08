@@ -9,17 +9,14 @@
 #include <asm-generic/socket.h>
 
 void chat_func(int socket_fd) {
-    int rd, wr;
     char receive_buff[256];
     char send_buff[256];
 
     while(1) {
         // Read data from socket
         // The read function will block until the data is read
-        rd = read(socket_fd, receive_buff, 256);
-        // if (rd == -1) {
-        //     handle_error("read()");
-        // }
+        read(socket_fd, receive_buff, 256);
+
         if (strncmp(receive_buff, "exit", 4) == 0) {
             system("clear");
             break;
@@ -30,10 +27,8 @@ void chat_func(int socket_fd) {
         // Write data to the client through the write function
         printf("\nMessage to Client: ");
         fgets(send_buff, 256, stdin);
-        wr = write(socket_fd, send_buff, 256);
-        // if (wr == -1) {
-        //     handle_error("write()");
-        // }
+        write(socket_fd, send_buff, 256);
+
         if (strncmp(send_buff, "exit", 4) == 0) {
             system("clear");
             break;
@@ -56,14 +51,9 @@ int main(int argc, char *argv[]) {
 
     // Create socket
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    // if (server_fd == -1) {
-    //     handle_error("socket()");
-    // }
 
     // Prevent error: “address already in use”
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &option, sizeof(option))) {
-        // handle_error("setsockopt()");
-    }
+    setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &option, sizeof(option));
 
     // Initialize the address for the server
     server_addr.sin_family = AF_INET;
@@ -71,14 +61,10 @@ int main(int argc, char *argv[]) {
     server_addr.sin_addr.s_addr = INADDR_ANY;
 
     // Bind the socket to the server address
-    if (bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
-        // handle_error("bind()");
-    }
+    bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
     // Listen to up to 5 connections in the queue
-    if (listen(server_fd, 5) == -1) {
-        // handle_error("listen()");
-    }
+    listen(server_fd, 5) == -1;
 
     // Get client information
     len = sizeof(client_addr);
@@ -87,7 +73,6 @@ int main(int argc, char *argv[]) {
         printf("Server is listening at port: %d\n.....\n", port_num);
         client_fd = accept(server_fd, (struct sockaddr *)&client_addr, (socklen_t *)&len);
         if (client_fd == -1) {
-            // handle_error("accept()");
             system("clear");
         }
 

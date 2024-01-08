@@ -8,7 +8,6 @@
 #include <unistd.h>
 
 void chat_func(int server_fd) {
-    int rd, wr;
     char receive_buff[256];
     char send_buff[256];
 
@@ -16,20 +15,16 @@ void chat_func(int server_fd) {
         // Send a message to the server using the write function
         printf("\nMessage to Server: ");
         fgets(send_buff, 256, stdin);
-        wr = write(server_fd, send_buff, 256);
-        if (wr == -1) {
-            // handle_error("write()");
-        }
+        write(server_fd, send_buff, 256);
+
         if (strncmp(send_buff, "exit", 4) == 0) {
             printf("Client exit ...\n");
             break;
         }
 
         // Receive messages from the server using the read function
-        rd = read(server_fd, receive_buff, 256);
-        if (rd < 0) {
-            // handle_error("read()");
-        }
+        read(server_fd, receive_buff, 256);
+        
         if (strncmp(receive_buff, "exit", 4) == 0) {
             printf("Server exit ...\n");
             break;
@@ -54,20 +49,13 @@ int main(int argc, char *argv[]) {
     // Initialize server address
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port_num);
-    if (inet_pton(AF_INET, argv[1], &server_addr.sin_addr) == -1) {
-        // handle_error("inet_pton()");
-    }
+    inet_pton(AF_INET, argv[1], &server_addr.sin_addr);
 
     // Create socket
     server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (server_fd == -1) {
-        // handle_error("socket()");
-    }
 
     // Connect to the server
-    if (connect(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr)) == -1) {
-        // handle_error("connect()");
-    }
+    connect(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
     chat_func(server_fd);
 
