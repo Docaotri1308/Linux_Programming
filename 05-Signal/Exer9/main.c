@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <signal.h>
 #include <asm-generic/signal-defs.h>
+#include <asm/signal.h>
 
 void sig_handler1(int num)
 {
@@ -37,5 +38,6 @@ int main()
     }
 
     while(1);
+    
     return 0;
 }
