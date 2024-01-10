@@ -1,7 +1,16 @@
-This is README file for Exer4.
+This is README file for Exer3 and Exer4.
 Author: Do Cao Tri
 
-Exer4:
+Exer3: 
+- Create file test.txt and write any data. 
+- Write information on the screen: 
+    + File type 
+    + File name 
+    + Last file modification time 
+    + Size 
+--> (Using struct stat)
+
+Exer4: 
 - Write a program that opens any file and uses the O_APPEND flag.
 - Then does a seek to the beginning of the file and writes some data to that file.
 - Where in the file will the data appear and why?
