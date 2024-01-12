@@ -20,7 +20,7 @@
 int main() {
     int shm_fd = shm_open(NAME_FILE, O_CREAT | O_RDWR, 0666);
     if (shm_fd < 0) {
-        printf("Create share memnory by shm_open() is failed ! --- %s\n", strerror(errno));
+        printf("shm_open() is failed ! --- %s\n", strerror(errno));
         return -1;
     }
 
