@@ -5,4 +5,4 @@ Exer16:
 - Compare between two memory mapping methods using the mmap() function (POSIX api). 
 - Deploy code to demonstrate.
 
-Note: o build main.c to excutable file, remember the linking "-lrt" option and -g option
+Note: build main.c to excutable file, remember the linking "-lrt" option and -g option
