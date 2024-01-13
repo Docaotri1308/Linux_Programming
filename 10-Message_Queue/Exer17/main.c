@@ -55,10 +55,13 @@ void input_data(mqd_t id_std, Message *info_data) {
     mq_send(id_std, (char *)&info_data, sizeof(Message), 0);
 }
 
-void display_info_ID(mqd_t id_std, long ID_info, Message *info_data, int n) {
+void display_info_ID(mqd_t id_std, long ID_info, Message *info_data) {
     int check = 0;
-    
-    for (int i = 0; i < n; i++) {
+    struct mq_attr attr;
+
+    mq_getattr(id_std, &attr);
+
+    for (int i = 0; i < attr.mq_curmsgs; i++) {
         mq_receive(id_std, (char *)&info_data, sizeof(MAX_SIZE), 0);
 
         if (ID_info == info_data->prio_id) {
@@ -71,6 +74,7 @@ void display_info_ID(mqd_t id_std, long ID_info, Message *info_data, int n) {
             check = 1;
 
             mq_send(id_std, (char *)&info_data, sizeof(Message), 0);
+            break;
         }
         mq_send(id_std, (char *)&info_data, sizeof(Message), 0);
     }
@@ -106,11 +110,8 @@ void delete_info(mqd_t id_std, long ID_info, Message *info_data) {
 }
 
 int main(int argc, char const *argv[]) {
-    Message temp, msque;
-    Message *temp_var, *msque_var;
+    Message mesq;
     int option;
-    int n = 0;
-    int check = 0;
     unsigned int ID;
 
     struct mq_attr attr;
@@ -142,51 +143,23 @@ int main(int argc, char const *argv[]) {
                 break;
 
             case 1:
-                n++;
-                temp_var = &temp;
-                input_data(mq_id, temp_var);
+                input_data(mq_id, &mesq);
                 break;
 
             case 2:
-                msque_var = &msque;
                 printf("\nEnter the ID you want to display: ");
                 scanf("%u", &ID);
-
-                for (int i = 0; i < attr.mq_curmsgs; i++) {
-                    if (mq_receive(mq_id, (char *)msque_var, MAX_SIZE, 0) == -1) {
-                        printf("\nmq_receive() is failed!");
-                        exit(0);
-                    }
-
-                    if (msque_var->prio_id == ID) {
-                        printf("\nDisplay Infomation Student - ID: %u\n", ID);
-                        printf("\n--- Your Name: %s", msque_var->Human.Name);
-                        printf("\n--- Your Age: %d\n", msque_var->Human.Age);
-                        printf("\n--- Your Phone: %s", msque_var->Human.PhoneNum);
-                        printf("\n--- Your Home: %s", msque_var->Human.Home);
-
-                        check = 1;
-
-                        mq_send(mq_id, (const char *)msque_var, sizeof(Message), 0);
-                        break;
-                    }
-                    mq_send(mq_id, (const char *)msque_var, sizeof(Message), 0);
-                }
-
-                if (check == 0) {
-                    printf("\nThere is no student corresponding to the ID!");
-                }
-                check = 0;
+                display_info_ID(mq_id, ID, &mesq);
                 break;
 
             case 3:
-                display_all_info(mq_id, &temp);
+                display_all_info(mq_id, &mesq);
                 break;
 
             case 4:
                 printf("\nEnter the ID you want to delete: ");
                 scanf("%u", &ID);
-                delete_info(mq_id, ID, &temp);
+                delete_info(mq_id, ID, &mesq);
                 ID = 0;
                 break;
             
