@@ -42,7 +42,8 @@ int main(int argc, char *argv[]) {
     if (argc < 3) {
         printf("command : ./client <server address> <port number>\n");
         exit(EXIT_FAILURE);
-    } else {
+    } 
+    else {
         port_num = atoi(argv[2]);
     }
 

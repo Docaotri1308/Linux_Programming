@@ -45,7 +45,8 @@ int main(int argc, char *argv[]) {
     if (argc < 2) {
         printf("No port provided\ncommand: ./server <port number>\n");
         exit(EXIT_FAILURE);
-    } else {
+    } 
+    else {
         port_num = atoi(argv[1]);
     }
 

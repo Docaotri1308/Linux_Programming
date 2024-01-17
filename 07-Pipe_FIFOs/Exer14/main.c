@@ -57,10 +57,12 @@ int main(int argc, char const *argv[]) {
                 if (rd == -1) {
                     printf("read() failed\n");
                     exit(0);
-                } else if (rd == 0) {                           // All write is closed, block the write end of the pipe
+                } 
+                else if (rd == 0) {                           // All write is closed, block the write end of the pipe
                     printf("Pipe end-of-pipe\n");
                     break;
-                } else {
+                } 
+                else {
                     printf("\nMessage from Parent process: %s", receive_buff);
                 }
                 
@@ -68,7 +70,8 @@ int main(int argc, char const *argv[]) {
                 fgets(send_buff, 256, stdin);
                 write(fds2[1], send_buff, 256);
             }
-        } else {
+        } 
+        else {
             sleep(1);
             
             // Prevent zombie process
@@ -92,16 +95,20 @@ int main(int argc, char const *argv[]) {
                 if (rd == -1) {
                     printf("read() failed\n");
                     exit(0);
-                } else if (rd == 0) {                           // All write is closed, block the write end of the pipe
+                } 
+                else if (rd == 0) {                           // All write is closed, block the write end of the pipe
                     printf("Pipe end-of-pipe\n");
                     break;
-                } else {
+                } 
+                else {
                     printf("\nMessage from Parent process: %s", receive_buff);
                 }
             }
         }
-    } else {
+    } 
+    else {
         printf("fork() failed\n");
     }
-     return 0;
+    
+    return 0;
 }

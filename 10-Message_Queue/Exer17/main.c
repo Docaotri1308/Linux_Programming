@@ -104,7 +104,8 @@ void delete_info(mqd_t id_std, long ID_info, Message *info_data) {
         printf("\nValid ID, information deleted!");
         mq_receive(id_std, (char *)&info_data, sizeof(info_data), 0);
         mq_send(id_std, (char *)&info_data, sizeof(info_data), 0);
-    } else {
+    } 
+    else {
         printf("\nYour ID does not match!");
     }
 }
@@ -168,12 +169,12 @@ int main(int argc, char const *argv[]) {
         }
     }
 
-    if(mq_close(mq_id) == -1) {
+    if (mq_close(mq_id) == -1) {
         perror("\nFail to close message queue!");
         return -2;
     }
 
-    if(mq_unlink(NAME_FILE) == -1) {
+    if (mq_unlink(NAME_FILE) == -1) {
         perror("\nFail to unlink message queue!");
         return -2;
     }

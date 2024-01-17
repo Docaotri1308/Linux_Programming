@@ -30,14 +30,14 @@ int main(void)
     int ret;
     Human CaoTris = {"Tris", 2002, "0931081664", "Cu Chi"};
 
-    if( pthread_create(&thread_id1,NULL,&threadHandler,NULL)) {
+    if (pthread_create(&thread_id1,NULL,&threadHandler,NULL)) {
         printf("pthread_create() error number=%d\n", ret);
         return -1;
     }
 
     sleep(2);
 
-    if ( pthread_create(&thread_id2,NULL,&threadHandler,&CaoTris)) {
+    if (pthread_create(&thread_id2,NULL,&threadHandler,&CaoTris)) {
         printf("pthread_create() error number=%d\n", ret);
         return -1;
     }

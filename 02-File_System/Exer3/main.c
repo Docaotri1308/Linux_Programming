@@ -28,30 +28,30 @@ int main()
     printf("File Type: ");
     switch (infor.st_mode & __S_IFMT)
     {
-    case __S_IFBLK:
-        printf("block device\n");
-        break;
-    case __S_IFCHR:
-        printf("character device\n");
-        break;
-    case __S_IFDIR:
-        printf("directory\n");
-        break;
-    case __S_IFIFO:
-        printf("FIFO/pipe\n");
-        break;
-    case __S_IFLNK:
-        printf("symlink\n");
-        break;
-    case __S_IFREG:
-        printf("regular file\n");
-        break;
-    case __S_IFSOCK:
-        printf("socket\n");
-        break;
-    default:
-        printf("unknown?\n");
-        break;
+        case __S_IFBLK:
+            printf("block device\n");
+            break;
+        case __S_IFCHR:
+            printf("character device\n");
+            break;
+        case __S_IFDIR:
+            printf("directory\n");
+            break;
+        case __S_IFIFO:
+            printf("FIFO/pipe\n");
+            break;
+        case __S_IFLNK:
+            printf("symlink\n");
+            break;
+        case __S_IFREG:
+            printf("regular file\n");
+            break;
+        case __S_IFSOCK:
+            printf("socket\n");
+            break;
+        default:
+            printf("unknown?\n");
+            break;
     }
 
     printf("File Last Modification: %s\n", ctime(&infor.st_mtime));

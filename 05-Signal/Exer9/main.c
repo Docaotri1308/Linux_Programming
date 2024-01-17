@@ -5,14 +5,12 @@
 #include <asm-generic/signal-defs.h>
 #include <asm/signal.h>
 
-void sig_handler1(int num)
-{
+void sig_handler1(int num) {
     printf("This is Signal 1: %d\n",num);
     exit(EXIT_SUCCESS);
 }
 
-int main()
-{   
+int main() {  
     if (signal(SIGINT, sig_handler1) == SIG_ERR) {
         printf("Can not handler SIGINT1\n");
         exit(EXIT_FAILURE);
