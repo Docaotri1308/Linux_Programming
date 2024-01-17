@@ -5,14 +5,12 @@
 #include <sys/types.h>
 #include <signal.h>
 
-void func_child(int signum)
-{
+void func_child(int signum) {
     printf("This is function to avoid Zombie process\n");
     wait(NULL);
 }
 
-int main()
-{
+int main() {
     pid_t process_pid = fork();
     if (process_pid >= 0) {
         if (process_pid == 0) {

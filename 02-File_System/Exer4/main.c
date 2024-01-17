@@ -4,8 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 
-int main()
-{
+int main() {
     int fd, wr;
     char buff[12] = "test APPEND";
 

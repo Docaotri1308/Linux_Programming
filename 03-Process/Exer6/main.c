@@ -3,8 +3,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     pid_t process_pid = fork();
     int status, rv;
     

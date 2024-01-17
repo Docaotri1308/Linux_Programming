@@ -3,8 +3,7 @@
 #include <unistd.h>
 #include <sys/types.h>
 
-int main(int argc, char const *argv[])
-{
+int main(int argc, char const *argv[]) {
     pid_t process_pid = fork();
 
     if (process_pid >= 0) {

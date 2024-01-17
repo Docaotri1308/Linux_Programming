@@ -100,8 +100,7 @@ static void *threadHandle_3(void *args) {
     }
 }
 
-int main()
-{
+int main() {
     while(1) {
         Human person;
         int ret;

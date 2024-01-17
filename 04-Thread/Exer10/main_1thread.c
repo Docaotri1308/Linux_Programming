@@ -6,8 +6,7 @@
 #include <string.h>
 #include <sys/stat.h>
 
-int main()
-{
+int main() {
     clock_t start_time = clock();
 
     int fd;

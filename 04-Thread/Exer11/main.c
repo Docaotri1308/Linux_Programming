@@ -25,8 +25,7 @@ static void *threadHandler(void *args) {
     }
 }
 
-int main(void)
-{
+int main(void) {
     int ret;
     Human CaoTris = {"Tris", 2002, "0931081664", "Cu Chi"};
 

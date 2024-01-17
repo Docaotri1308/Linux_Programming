@@ -6,8 +6,7 @@
 #include <time.h>
 #include <unistd.h>
 
-int main()
-{
+int main() {
     int fd, wr;
     char buff[18] = "Hello Mr.Phong !\n";
 

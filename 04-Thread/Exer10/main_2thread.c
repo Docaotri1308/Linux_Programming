@@ -21,8 +21,7 @@ static void *thr_handle(void *argv) {
     pthread_exit(NULL);
 }
 
-int main()
-{
+int main() {
     clock_t start_time = clock();
 
     pthread_t thread_id;
