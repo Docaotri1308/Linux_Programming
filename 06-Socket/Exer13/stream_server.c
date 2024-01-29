@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
     bind(server_fd, (struct sockaddr *)&server_addr, sizeof(server_addr));
 
     // Listen to up to 5 connections in the queue
-    listen(server_fd, 5) == -1;
+    listen(server_fd, 5);
 
     // Get client information
     len = sizeof(client_addr);
